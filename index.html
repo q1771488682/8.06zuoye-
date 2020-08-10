@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>上海绿色翅膀科技发展有限公司</title>
+    <meta name="keywords" content="上海绿色翅膀科技发展有限公司"/>
+    <meta name="description" content="上海绿色翅膀科技发展有限公司"/>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+
+<body>
+<div class="header" id="header">
+    <div class="logo"><a href=""><img src="img/logo.png"></a></div>
+
+    <div class="nav clearfix">
+        <ul id="hzMenu">
+            <li><a href=""><span>首页</span></a></li>
+
+            <li><a href="">公司介绍</a>
+                <ul class="subnav">
+                    <li><a href="">关于我们</a></li>
+                    <li><a href="">组织架构</a></li>
+                    <li><a href="">发展历程</a></li>
+                    <li><a href="">荣誉资质</a></li>
+                    <li><a href="">公司风采</a></li>
+                </ul>
+            </li>
+            <li><a href="">产品中心</a>
+                <ul class="subnav">
+                    <li><a href="">车辆销售</a></li>
+                    <li><a href="">车辆租赁</a></li>
+                    <li><a href="">充电桩</a></li>
+                </ul>
+            </li>
+            <li><a href="">精彩案例</a>
+                <ul class="subnav">
+                    <li><a href="">案例中心</a></li>
+                </ul>
+            </li>
+
+            <li><a href="">客户服务</a>
+                <ul class="subnav">
+                    <li><a href="">服务中心</a></li>
+                    <li><a href="">下载中心</a></li>
+                </ul>
+            </li>
+            <li><a href="">新闻中心</a>
+                <ul class="subnav">
+                    <li><a href="">公司新闻</a></li>
+                    <li><a href="">行业动态</a></li>
+                </ul>
+            </li>
+            <li><a href="">招聘管理</a>
+                <ul class="subnav">
+                    <li><a href="">人才招聘</a></li>
+                </ul>
+            </li>
+            <li><a href="">联系我们</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="banner">
+    <div id="prev"><</div>
+    <div id="next">></div>
+    <ul id="banner_img">
+        <li><img src="img/banner1.jpg" width="100%"/></li>
+        <li><img src="img/banner2.jpg" width="100%"/></li>
+        <li><img src="img/banner3.jpg" width="100%"/></li>
+        <li><img src="img/banner4.jpg" width="100%"/></li>
+        <li><img src="img/banner5.jpg" width="100%"/></li>
+    </ul>
+    <ul id="banner_num">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <div id="circle"></div>
+</div>
+
+<div class="product">
+    <h1>我们的产品</h1><span>OUR proDUCT</span>
+    <p>我们提供高品质、高性能的产品，并有一流的售后服务，让您购后无忧</p>
+</div>
+
+<div class="news">
+
+</div>
+
+<div class="link">
+
+</div>
+
+
+<div class="footer">
+
+</div>
+
+<div class="foot_copy">
+
+</div>
+</body>
+
+</html>
+<style>
+    #banner{
+        position:absolute;
+    }
+    #prev,#next {
+        /*display:none;*/
+        position: absolute;
+        font-size: 60px;
+        width: 50px;
+        height: 200px;
+        z-index: 2;
+        color: #FFFFFF;
+        text-align: center;
+        line-height: 110px;
+        cursor: default;
+    }
+    #prev {
+        top: 200px;
+        left: 0;
+    }
+    #next {
+        top: 200px;
+        right: 0;
+    }
+    /*取消小圆点*/
+    #banner li{
+        list-style:none;
+    }
+    #banner_img {
+        margin:0;
+        padding: 0px;
+    }
+
+    #banner_img li{
+        display:none;
+        margin:0;
+        padding: 0;
+    }
+
+    /*角落显示数字的ul*/
+    #banner_num{
+        overflow:hidden;
+        position:absolute;
+        text-align:center;
+        bottom:10px;
+        left:44%;
+        color:#FFF;
+    }
+    /*数字的浮动*/
+    #banner_num li{
+        border:#FFF solid 1px;
+        float:left;
+        margin:0 5px;
+        padding:3px 10px;
+    }
+    .numsover{
+        background-color:#F08080;
+        color:#F00;
+    }
+
+    .numsout{}
+</style>
+<script type="text/javascript">
+    var $imgs = $("#banner_img li");
+    var $nums = $("#banner_num li");
+    var $prev = $("#prev");
+    var $next = $("#next");
+
+    var isStop = false;
+    var index = 0;
+
+    $nums.eq(index).addClass("numsover").siblings().removeClass("numsover");
+    $imgs.eq(index).show();
+
+    /*鼠标悬停在数字上的事件处理*/
+    $nums.mouseover(function() {
+        isStop = true;
+        /*先把数字的背景改了*/
+        $(this).addClass("numsover").siblings().removeClass("numsover");
+
+        /*图片的索引和数字的索引是对应的，所以获取当前的数字的索引就可以获得图片，从而对图片进行操作处理*/
+        index = $nums.index(this);
+        $imgs.eq(index).fadeIn().siblings().hide();
+    }).mouseout(function() {
+        isStop = false
+    });
+    $prev.click(function() {
+        if(isStop) return;
+        if(index <= 0) index = 5;
+        index--;
+        $nums.eq(index).addClass("numsover").siblings().removeClass("numsover");
+        $imgs.eq(index).fadeIn().siblings().hide();
+    });
+    $next.click(function() {
+        if(isStop) return;
+        if(index >= 5) index = -1;
+        index++;
+        $nums.eq(index).addClass("numsover").siblings().removeClass("numsover");
+        $imgs.eq(index).fadeIn().siblings().hide();
+    });
+    /*设置循环*/
+    setInterval(function() {
+        if(isStop) return;
+        if(index >= 5) index = -1;
+        index++;
+
+        $nums.eq(index).addClass("numsover").siblings().removeClass("numsover");
+        $imgs.eq(index).fadeIn().siblings().hide();
+
+    }, 2000);
+</script>
